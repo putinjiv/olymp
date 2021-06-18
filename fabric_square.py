@@ -3,17 +3,17 @@ def get_fabric_square(matr, i, j):
   return s
 
 
-#m, n = map(int,input().split())
-#matr = []
-#for i in range(m):
-  #matr.append(list(map(int,input().split())))
-  #assert len(matr[i]) == n
-m, n = 5, 7
-matr = [[10, 2, 3, 7, 10, 4, 8], [3, 2, 1, 9, 6, 2, 1], [0, 3, 6, 7, 8, 9, 10], [5, 4, 3, 0, 2, 1, 8], [9, 2, 3, 10, 6, 4, 8]]
+m, n = map(int,input().split())
+matr = []
+for i in range(m):
+  matr.append(list(map(int,input().split())))
+  assert len(matr[i]) == n
+  
 for i in range(m):
   print(matr[i])
 x = []
 for i in range(1, m-1):
   for j in range(1, n-1):
     x.append(get_fabric_square(matr, i, j))
+    
 print(min(x))
