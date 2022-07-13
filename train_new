@@ -1,0 +1,37 @@
+# 40.5 0.5 0.6 3 7.5
+# 20.5 0.5 0.6 3 7.5
+f_data, points, point = [float(i) for i in input('Введите данные: ').split(" ")], [], 0
+if f_data[0] > 0 and f_data[1] > 0 and f_data[2] > 0 and f_data[3] > 0 and f_data[4] >= 0:
+    print('Всё путём 1')
+    for z in range(len(f_data)):
+        if len(str(f_data[z])[str(f_data[z]).find('.')+1:]) <= 4 and int(str(f_data[z])[:str(f_data[z]).find('.')]) <= 1000:
+            point += 1
+    if point == 5:
+        print('Всё путём 2')
+        L, a1, a2, v, t = f_data[0], f_data[1], f_data[2], f_data[3], f_data[4]
+        if t == 0:
+            t_min = 2 * L * a1 * (a2 / a1 + 1) / (a2 * (a2 + a1))
+            # Они должны выбрать скорость, выше возможного по условию данных или равную ей,
+            ## иначе никак не получится выполнить задание поезду
+        else:
+            if L - v * t - v ** 2 * (a1 +a2) / (2 * a1 * a2) > 0:
+                print('Случай 1')
+                t_min = v * (a1 + a2) / (2 * a1 * a2) + L / v
+                print(t_min)
+            elif L - v * t - v ** 2 * (a1 +a2) / (2 * a1 * a2) == 0:
+                print('Случай 2')
+                t_min = v * (a1 + a2) / (a1 * a2) + t
+                print(t_min)
+            elif L - v * t - v ** 2 * (a1 + a2) / (2 * a1 * a2) < 0:
+                print('Случай 3')
+                # v0 ** 2 * (a1 + a2) / (2 * a1 * a2) + t * v0 - L = 0
+                D = t ** 2 + 4 * L * (a1 + a2) / (2 * a1 * a2)
+                v0 = (D ** 0.5 - t) * a1 * a2 / (a1 + a2)
+                t_min = v0 / a1 + t + v0 / a2
+                print(t_min)
+            else:
+                print('Да как так!!')
+    else:
+        print("Неверный формат данных 2")
+else:
+    print("Неверный формат данных 1")
